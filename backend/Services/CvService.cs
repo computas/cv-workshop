@@ -14,7 +14,6 @@ public class CvService(AppDbContext context) : ICvService
 
     // TODO: Oppgave 1
 
-
     public async Task<IEnumerable<Experience>> GetAllExperiencesAsync()
     {
         // TODO: Oppgave 2
