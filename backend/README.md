@@ -112,7 +112,12 @@ Basert på innsikten fra designfasen ble det avdekket at hvilket _år_ man går 
 MERK: du er nødt til å migrere databasen ettersom vi endrer modellen som benyttes i tabellen. Derfor må testdataen i _SeedData.cs_ oppdateres med et nytt felt. I tillegg må du kjøre en ny kommando for å migrere databasen. Se om du klarer å finne kommandoen selv. 
 
 _HINT_: 
+
+<details>
+<summary>Se hint</summary>
+   
 ```
 dotnet ef migrations add <NAVN_PÅ_MIGRRASJON>
 ```
+</details>
 
