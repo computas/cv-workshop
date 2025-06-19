@@ -99,6 +99,20 @@ Du har kanskje sett at Experience inneholder en User-ID som kan benyttes til å 
 _HINT_: Her er et forslag til fremgangsmåte: 
 1. Utvid UserEndpoints med et nytt GET-endepunkt på pathen "/users/{id}/experiences"
 2. Utvid CV-service med en metode som enten henter riktig bruker og alle erfaringer, og mapper disse riktig mellom seg. Her er du nok nødt til å utvide UserDto-en samt oppdatere UserMapperen for å sørge for at erfaringene blir med.
-3. Test i Swagger eller ved å utføre TDD: 
+3. Test i Swagger eller ved å utføre TDD.
 
+## Mer bonus: Oppgave 6
+
+Basert på innsikten fra designfasen ble det avdekket at hvilket _år_ man går er ganske viktig for en rekrutterer. Gitt dette, ønsker vi å utvide User-modellen vår med en enum-type _YearOfStudies_ som avgrenser tallverdier fra 1-9 (eks: 1 => førsteåret på bachelor, 4 => førsteåret master, osv...). Din oppgave er: 
+
+1. Utvid User-modellen
+2. Oppdatere mappere og UserDTO slik at yearOfStudies følger med hele veien
+3. Oppdatere typen i frontend dersom dere har kommet så langt
+
+MERK: du er nødt til å migrere databasen ettersom vi endrer modellen som benyttes i tabellen. Derfor må testdataen i _SeedData.cs_ oppdateres med et nytt felt. I tillegg må du kjøre en ny kommando for å migrere databasen. Se om du klarer å finne kommandoen selv. 
+
+_HINT_: 
+```
+dotnet ef migrations add <NAVN_PÅ_MIGRRASJON>
+```
 
