@@ -1,0 +1,17 @@
+**/bin/
+**/obj/
+**/out/
+**/node_modules/
+**/dist/
+**/*.user
+.vs/
+.idea/
+.vscode/
+.git/
+.github/
+frontend/
+infrastructure/
+**/appsettings.Development.json
+**/Dockerfile
+.dockerignore
+README.md
