@@ -27,14 +27,14 @@
 
 5. Klikk **Create new project**.
 
-## Oppsett av Backend
+## Backendoppgaver og oppsett
 
 Se [README.md](https://github.com/cxberk/cv-workshop/blob/main/backend/README.md) filen i /backend
 
-## Oppsett av Frontend
+## Frontendoppgaver
 
 Se [README.md](https://github.com/cxberk/cv-workshop/blob/main/frontend/README.md) filen i /frontend
 
-## Oppgaver backend
+## Infrastruktur
 
-[Ligger lenger ned i README i backend](https://github.com/computas/cv-workshop/tree/main/backend#oppgaver)
+[Ligger lenger ned i README i backend](https://github.com/computas/cv-workshop/tree/main/infrastructure)
