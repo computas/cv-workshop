@@ -1,19 +1,13 @@
 terraform {
   required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "~> 4.0"
+    upcloud = {
+      source  = "UpCloudLtd/upcloud"
+      version = "~> 5.0"
     }
-  }
-
-  backend "azurerm" {
-    resource_group_name  = "tfstate"
-    storage_account_name = "tfstate30619"
-    container_name       = "tfstate"
-    key                  = "terraform.tfstate"
   }
 }
 
-provider "azurerm" {
-  features {}
+provider "upcloud" {
+  username = var.upcloud_username
+  password = var.upcloud_password
 }

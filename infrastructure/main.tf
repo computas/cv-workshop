@@ -1,117 +1,94 @@
 locals {
-  location = "westeurope"
+  zone            = "no-svg1"
+  plan            = "1xCPU-1GB"
+  ip              = upcloud_server.server.network_interface[0].ip_address
+  hostname        = "${replace(local.ip, ".", "-")}.${local.zone}.upcloud.host"
+  compose_content = file("${path.module}/../compose.yaml")
+  env_content     = <<-EOF
+    CADDY_HOST='${local.hostname}'
+    DB_PASSWORD='${random_password.db-password.result}'
+    FRONTEND_IMAGE='ghcr.io/baksetercx/cv-workshop/frontend:latest'
+    BACKEND_IMAGE='ghcr.io/baksetercx/cv-workshop/backend:latest'
+  EOF
 }
 
-resource "azurerm_resource_group" "cv" {
-  name     = "cv-rg"
-  location = local.location
+resource "tls_private_key" "ssh" {
+  algorithm = "ED25519"
 }
 
-resource "azurerm_container_app_environment" "cv" {
-  name                = "${azurerm_resource_group.cv.name}-env"
-  location            = local.location
-  resource_group_name = azurerm_resource_group.cv.name
-}
-
-resource "azurerm_container_app" "cv-frontend" {
-  name                         = "cv-frontend"
-  container_app_environment_id = azurerm_container_app_environment.cv.id
-  resource_group_name          = azurerm_resource_group.cv.name
-  revision_mode                = "Single"
+resource "upcloud_server" "server" {
+  hostname = var.name
+  zone     = local.zone
+  plan     = local.plan
 
   template {
-    container {
-      name   = "frontend"
-      image  = "ghcr.io/${var.repository_owner}/cv-workshop/frontend:latest"
-      cpu    = "0.25"
-      memory = "0.5Gi"
-
-      env {
-        name  = "BACKEND_URL"
-        value = "https://${azurerm_container_app.cv-backend.ingress.0.fqdn}"
-      }
-
-      env {
-        name        = "BACKEND_API_KEY"
-        secret_name = "backend-api-key"
-      }
-    }
-
-    min_replicas    = 1
-    max_replicas    = 1
-    revision_suffix = substr(var.revision_suffix, 0, 10)
+    storage = "Debian GNU/Linux 13 (Trixie)"
+    size    = 10
   }
 
-  secret {
-    name  = "backend-api-key"
-    value = var.api_key
+  network_interface {
+    type = "public"
   }
 
-  ingress {
-    target_port      = 3000
-    external_enabled = true
-
-    traffic_weight {
-      percentage      = 100
-      latest_revision = true
-    }
+  login {
+    user = var.name
+    keys = [tls_private_key.ssh.public_key_openssh]
   }
 }
 
-resource "azurerm_container_app" "cv-backend" {
-  name                         = "cv-backend"
-  container_app_environment_id = azurerm_container_app_environment.cv.id
-  resource_group_name          = azurerm_resource_group.cv.name
-  revision_mode                = "Single"
-
-  template {
-    container {
-      name   = "backend"
-      image  = "ghcr.io/${var.repository_owner}/cv-workshop/backend:latest"
-      cpu    = "0.25"
-      memory = "0.5Gi"
-
-      env {
-        name        = "AppSettings__FrontendApiKey"
-        secret_name = "frontend-api-key"
-      }
-
-      env {
-        name        = "ConnectionStrings__DefaultConnection"
-        secret_name = "connection-string"
-      }
-    }
-
-    min_replicas    = 1
-    max_replicas    = 1
-    revision_suffix = substr(var.revision_suffix, 0, 10)
-  }
-
-  secret {
-    name  = "frontend-api-key"
-    value = var.api_key
-  }
-
-  secret {
-    name  = "connection-string"
-    value = var.connection_string
-  }
-
-  ingress {
-    target_port      = 8080
-    external_enabled = true
-
-    traffic_weight {
-      percentage      = 100
-      latest_revision = true
-    }
-  }
+resource "random_password" "db-password" {
+  length  = 24
+  special = true
 }
 
-output "frontend_url" {
-  value = "https://${azurerm_container_app.cv-frontend.ingress.0.fqdn}"
-}
+resource "null_resource" "deploy" {
+  triggers = {
+    server_id    = upcloud_server.server.id
+    compose_hash = sha256(local.compose_content)
+    env_hash     = sha256(local.env_content)
+  }
 
-output "backend_url" {
-  value = "https://${azurerm_container_app.cv-backend.ingress.0.fqdn}"
+  connection {
+    type        = "ssh"
+    host        = local.ip
+    user        = var.name
+    private_key = tls_private_key.ssh.private_key_openssh
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo apt-get update -qq",
+      "sudo apt-get install -y -qq ca-certificates curl gnupg",
+      "sudo install -m 0755 -d /etc/apt/keyrings",
+      "if ! command -v docker > /dev/null; then",
+      "  sudo rm -f /etc/apt/keyrings/docker.gpg",
+      "  curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --batch --dearmor -o /etc/apt/keyrings/docker.gpg",
+      "  echo \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian $(. /etc/os-release && echo $VERSION_CODENAME) stable\" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null",
+      "  sudo apt-get update -qq",
+      "  sudo apt-get install -y -qq docker-ce docker-ce-cli containerd.io docker-compose-plugin",
+      "  sudo systemctl enable --now docker",
+      "  sudo usermod -aG docker $USER",
+      "fi",
+      "sudo mkdir -p /opt/app",
+      "sudo chown $USER:$USER /opt/app",
+    ]
+  }
+
+  provisioner "file" {
+    content     = local.compose_content
+    destination = "/opt/app/compose.yaml"
+  }
+
+  provisioner "file" {
+    content     = local.env_content
+    destination = "/opt/app/.env"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "cd /opt/app",
+      "docker compose pull",
+      "docker compose up -d --remove-orphans",
+    ]
+  }
 }
