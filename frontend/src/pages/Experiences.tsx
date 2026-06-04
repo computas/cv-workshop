@@ -6,13 +6,12 @@ import { useExperiences } from "../hooks/useExperiences";
 
 export default function Experiences() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_selectedExperience, _setSelectedExperience] = useState<string | null>(
-    null
-  );
+  const [selectedExperienceType, setSelectedExperienceType] = useState<
+    string | null
+  >(null);
 
   // TODO Oppgave 1.1 of 1.2: Håndter loading og error av erfaringer
   const { data: experiences } = useExperiences();
-
 
   if (!experiences || experiences.length === 0) {
     return <div className={styles.noExperiences}>No experiences found.</div>;
@@ -27,17 +26,18 @@ export default function Experiences() {
 
   // const filteredExperiences = () => {
   //   const validTypes = Object.keys(experienceTypeMap).filter(
-  //     (type) => type !== "other"
+  //     (type) => type !== "other",
   //   );
 
-  //   if (selectedExperience === "other") {
+  //   if (selectedExperienceType === "other") {
   //     return experiences.filter(
-  //       (experience) => !validTypes.includes(experience.type.toLowerCase())
+  //       (experience) => !validTypes.includes(experience.type.toLowerCase()),
   //     );
-  //   } else if (selectedExperience) {
+  //   } else if (selectedExperienceType) {
   //     return experiences.filter(
   //       (experience) =>
-  //         experience.type.toLowerCase() === selectedExperience.toLowerCase()
+  //         experience.type.toLowerCase() ===
+  //         selectedExperienceType.toLowerCase(),
   //     );
   //   }
   //   return experiences;
@@ -60,8 +60,7 @@ export default function Experiences() {
         </label>
       </div>
       <div className={styles.experiences}>
-        {/*TODO Oppgave 3.1: Vis alle erfaringene*/}
-        {/* TODO Oppgave 4.1: Sorter erfaringene*/}
+        {/*TODO Oppgave 3.1, 3.2, 4.1: Vis og sorter alle erfaringene. */}
       </div>
     </div>
   );
