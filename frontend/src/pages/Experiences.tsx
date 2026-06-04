@@ -5,7 +5,6 @@ import { experienceTypeMap } from "../types/experienceTypes";
 import { useExperiences } from "../hooks/useExperiences";
 
 export default function Experiences() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedExperienceType, setSelectedExperienceType] = useState<
     string | null
   >(null);
