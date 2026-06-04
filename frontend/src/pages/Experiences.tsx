@@ -1,15 +1,22 @@
 import { useState } from "react";
 import styles from "./Experiences.module.css";
 import { ExperienceCard } from "../components/experiences/ExperienceCard";
+import { PopupModal } from "../components/popupModal/PopupModal";
+import { ExperienceChip } from "../components/experiences/ExperienceChip";
+import { CxIcon } from "@computas/designsystem/icon/react";
 import { CxOption, CxSelect } from "@computas/designsystem/select/react";
-
+import akersgataImage from "../assets/akersgata.jpg";
 import { experienceTypeMap } from "../types/experienceTypes";
 import { useExperiences } from "../hooks/useExperiences";
+import type { Experience } from "../types/types";
+import { formatMonthYear } from "../utils/formatMonthYear";
 
 export default function Experiences() {
   const [selectedExperienceType, setSelectedExperienceType] = useState<
     string | null
   >(null);
+  const [selectedExperience, setSelectedExperience] =
+    useState<Experience | null>(null);
 
   // TODO Oppgave 1.1 of 1.2: Håndter loading og error av erfaringer
   const { data: experiences, isLoading, error } = useExperiences();
@@ -80,12 +87,56 @@ export default function Experiences() {
             );
           })
           .map((experience) => (
-            <ExperienceCard key={experience.id} experience={experience} />
+            <ExperienceCard
+              key={experience.id}
+              experience={experience}
+              onClick={() => setSelectedExperience(experience)}
+            />
           ))}
       </div>
       {filteredExperiences().length === 0 && (
         <div className={styles.noExperiences}>Ingen erfaringer funnet</div>
       )}
+
+      <PopupModal
+        open={selectedExperience !== null}
+        title={selectedExperience?.title ?? ""}
+        onCloseHandler={() => setSelectedExperience(null)}
+      >
+        {selectedExperience && (
+          <div className={styles.modalContent}>
+            <img
+              className={styles.modalImage}
+              src={selectedExperience.imageUrl || akersgataImage}
+              alt={selectedExperience.title}
+            />
+            <div>
+              <ExperienceChip type={selectedExperience.type} />
+            </div>
+            <p className={styles.modalMeta}>
+              <CxIcon name="calendar" size="4" />
+              {selectedExperience.startDate &&
+                formatMonthYear(selectedExperience.startDate)}{" "}
+              –{" "}
+              {selectedExperience.endDate
+                ? formatMonthYear(selectedExperience.endDate)
+                : "d.d"}
+            </p>
+            <p className={styles.modalMeta}>
+              <CxIcon name="location" size="4" />
+              {selectedExperience.company
+                ? selectedExperience.company
+                : "Selvstendig arbeid"}
+            </p>
+            <p className={styles.modalRole}>
+              <strong>Rolle:</strong> {selectedExperience.role}
+            </p>
+            <p className={styles.modalDescription}>
+              {selectedExperience.description}
+            </p>
+          </div>
+        )}
+      </PopupModal>
     </div>
   );
 }

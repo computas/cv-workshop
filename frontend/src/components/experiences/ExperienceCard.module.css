@@ -7,6 +7,24 @@
   background-color: #ecf7ff;
 }
 
+.clickable {
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px
+    color-mix(in srgb, var(--cx-color-grey-900) 12%, transparent);
+}
+
+.clickable:focus-visible {
+  outline: 2px solid var(--cx-color-blue-500);
+  outline-offset: 2px;
+}
+
 .chip {
   position: absolute;
   right: var(--cx-spacing-1);

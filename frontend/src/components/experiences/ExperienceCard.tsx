@@ -1,4 +1,5 @@
 import { Experience } from "../../types/types";
+import { formatMonthYear } from "../../utils/formatMonthYear";
 import styles from "./ExperienceCard.module.css";
 import akersgataImage from "../../assets/akersgata.jpg";
 import { CxIcon } from "@computas/designsystem/icon/react";
@@ -6,18 +7,16 @@ import { ExperienceChip } from "./ExperienceChip";
 
 interface ExperienceCardProps {
   experience: Experience;
+  onClick?: () => void;
 }
 
-export function ExperienceCard({ experience }: ExperienceCardProps) {
-  function getMonth(date: string) {
-    const dateObj = new Date(date);
-    const month = dateObj.toLocaleDateString("nb-NO", { month: "long" });
-    const year = dateObj.getFullYear();
-    return `${month.charAt(0).toUpperCase() + month.slice(1)} ${year}`;
-  }
-
+export function ExperienceCard({ experience, onClick }: ExperienceCardProps) {
   return (
-    <div className={styles.container}>
+    <div
+      className={`${styles.container} ${onClick ? styles.clickable : ""}`}
+      onClick={onClick}
+      role={onClick ? "button" : undefined}
+    >
       <img
         className={styles.image}
         src={experience.imageUrl || akersgataImage}
@@ -29,8 +28,8 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
       <div className={styles.info}>
         <p className={styles.keyInfo}>
           <CxIcon name="calendar" size="4" />{" "}
-          {experience.startDate && getMonth(experience.startDate)} -{" "}
-          {experience.endDate ? getMonth(experience.endDate) : "d.d"}
+          {experience.startDate && formatMonthYear(experience.startDate)} -{" "}
+          {experience.endDate ? formatMonthYear(experience.endDate) : "d.d"}
         </p>
         <p className={styles.keyInfo}>
           <CxIcon name="location" size="4" />{" "}

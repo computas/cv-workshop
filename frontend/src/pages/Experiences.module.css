@@ -39,3 +39,35 @@
   margin-left: auto;
   width: 200px;
 }
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cx-spacing-4);
+  overflow-y: auto;
+}
+
+.modalImage {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: var(--cx-radius-medium);
+}
+
+.modalMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--cx-spacing-2);
+  color: var(--cx-color-grey-600);
+  margin: 0;
+}
+
+.modalRole {
+  margin: 0;
+}
+
+.modalDescription {
+  margin: 0;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
