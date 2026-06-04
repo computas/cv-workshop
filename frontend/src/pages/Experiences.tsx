@@ -7,9 +7,9 @@ import { experienceTypeMap } from "../types/experienceTypes";
 import { useExperiences } from "../hooks/useExperiences";
 
 export default function Experiences() {
-  const [selectedExperience, setSelectedExperience] = useState<string | null>(
-    null
-  );
+  const [selectedExperienceType, setSelectedExperienceType] = useState<
+    string | null
+  >(null);
 
   // TODO Oppgave 1.1 of 1.2: Håndter loading og error av erfaringer
   const { data: experiences, isLoading, error } = useExperiences();
@@ -33,22 +33,23 @@ export default function Experiences() {
   const handleSelectChange = (e: Event) => {
     const customEvent = e as CustomEvent;
     // TODO Oppgave 5.1: Filtrer experiences etter type
-    setSelectedExperience(customEvent.detail.value || null);
+    setSelectedExperienceType(customEvent.detail.value || null);
   };
 
   const filteredExperiences = () => {
     const validTypes = Object.keys(experienceTypeMap).filter(
-      (type) => type !== "other"
+      (type) => type !== "other",
     );
 
-    if (selectedExperience === "other") {
+    if (selectedExperienceType === "other") {
       return experiences.filter(
-        (experience) => !validTypes.includes(experience.type.toLowerCase())
+        (experience) => !validTypes.includes(experience.type.toLowerCase()),
       );
-    } else if (selectedExperience) {
+    } else if (selectedExperienceType) {
       return experiences.filter(
         (experience) =>
-          experience.type.toLowerCase() === selectedExperience.toLowerCase()
+          experience.type.toLowerCase() ===
+          selectedExperienceType.toLowerCase(),
       );
     }
     return experiences;
@@ -71,8 +72,7 @@ export default function Experiences() {
         </label>
       </div>
       <div className={styles.experiences}>
-        {/*TODO Oppgave 3.1: Vis alle erfaringene*/}
-        {/* TODO Oppgave 4.1: Sorter erfaringene*/}
+        {/*TODO Oppgave 3.1, 3.2, 4.1: Vis og sorter alle erfaringene. */}
         {filteredExperiences()
           .sort((a, b) => {
             return (
