@@ -1,6 +1,5 @@
 locals {
   zone            = "no-svg1"
-  plan            = "1xCPU-1GB"
   ip              = upcloud_server.server.network_interface[0].ip_address
   hostname        = "${replace(local.ip, ".", "-")}.${local.zone}.upcloud.host"
   compose_content = file("${path.module}/../compose.yaml")
@@ -19,7 +18,10 @@ resource "tls_private_key" "ssh" {
 resource "upcloud_server" "server" {
   hostname = var.name
   zone     = local.zone
-  plan     = local.plan
+  plan     = "DEV-1xCPU-1GB-10GB"
+
+  metadata = true
+  firewall = true
 
   template {
     storage = "Debian GNU/Linux 13 (Trixie)"
