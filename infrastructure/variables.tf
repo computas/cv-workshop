@@ -1,21 +1,12 @@
-variable "revision_suffix" {
-  description = "Suffix to append to the revision name of the container app. Should normally be git commit hash."
-  type        = string
+variable "upcloud_username" {
+  type = string
 }
 
-variable "repository_owner" {
-  description = "GitHub repository owner for the container image."
-  type        = string
+variable "upcloud_password" {
+  type      = string
+  sensitive = true
 }
 
-variable "api_key" {
-  description = "API key for frontend/backend communication."
-  type        = string
-  sensitive   = true
-}
-
-variable "connection_string" {
-  description = "Connection string for the Supabase database."
-  type        = string
-  sensitive   = true
+variable "name" {
+  type = string
 }

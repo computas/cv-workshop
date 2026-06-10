@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 
 WORKDIR /app
 
-COPY backend/ .
+COPY . .
 
 RUN dotnet restore backend.csproj && \
     dotnet publish \
