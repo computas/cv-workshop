@@ -2,12 +2,8 @@ name: Build
 
 on:
   push:
-    branches: [main]
-    paths:
-      - 'frontend/**'
-      - 'backend/**'
-      - 'infrastructure/**'
-      - '.github/workflows/build.yaml'
+    branches:
+      - feat/build
 
 env:
   IMAGE_NAME: 'ghcr.io/${{ github.repository }}'
