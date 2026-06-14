@@ -3,7 +3,7 @@ name: Build
 on:
   push:
     branches:
-      - feat/build
+      - main
 
 env:
   IMAGE_NAME: 'ghcr.io/${{ github.repository }}'
