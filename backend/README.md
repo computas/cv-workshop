@@ -106,6 +106,7 @@ Utfør følgende oppgaver:
    <summary>💡 Se hint</summary>
 
    Bruk LINQ-uttrykk for å prosessere lista.
+
    </details>
 
    For de spesielt interesserte: [artikkel om funksjonell programmering i C#](https://www.milanjovanovic.tech/blog/functional-programming-in-csharp-the-practical-parts), + [enda en artikkel](https://matrixtrak.com/an-introduction-to-functional-programming-with-c-a-dive-into-the-paradigm-shift/).
@@ -144,12 +145,11 @@ Basert på innsikten fra designfasen ble det avdekket at hvilket _år_ man går 
 
 MERK: du er nødt til å migrere databasen ettersom vi endrer modellen som benyttes i tabellen. Derfor må testdataen i _SeedData.cs_ oppdateres med et nytt felt. I tillegg må du kjøre en ny kommando for å migrere databasen. Se om du klarer å finne kommandoen selv.
 
-_HINT_:
-
 <details>
-<summary>Se hint</summary>
-   
+<summary>💡 Se hint</summary>
+
 ```
 dotnet ef migrations add <NAVN_PÅ_MIGRRASJON>
 ```
+
 </details>
