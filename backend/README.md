@@ -44,13 +44,23 @@ Utfør følgende oppgaver:
 
 1. Legg til et GET-endepunkt i UserEndpoints.cs. Ta inn id-en (type: GUID) som en Route parameter.
 
-   _HINT_ 💡: Sjekk [dokumentasjonen](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-10.0#routing) til Minimal API.
+   <details>
+   <summary>💡 Se hint</summary>
+
+   Sjekk [dokumentasjonen](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-10.0#routing) til Minimal API.
+
+   </details>
 
    > Du vil etter hvert se behovet for å utvide CVService. Du kan derfor hoppe videre til steg 2 og komme tilbake til steg 1 etterpå.
 
 2. Utvid CVService med en ny metode _GetUserByIdAsync_. Husk å oppdatere interfacet også.
 
-   _HINT_ 💡: metoden `FindAsync()` kan ta inn en id og finne riktig bruker.
+   <details>
+   <summary>💡 Se hint</summary>
+
+   Metoden `FindAsync()` kan ta inn en id og finne riktig bruker.
+
+   </details>
 
 3. Dersom ingen bruker finnes med gitt id, returner en 404 Not Found med en beskrivende feilmelding.
 
@@ -92,7 +102,11 @@ Utfør følgende oppgaver:
    2. Gå gjennom alle brukere, parsere ferdighetene deres til en liste med Skills, og sjekke om en av ferdighetene finnes i lista som er sendt som argument.
    3. Returnere de filtrerte brukerne som har _minst_ en ønsket ferdighet.
 
-   _HINT_: Bruk LINQ-uttrykk for å prosessere lista.
+   <details>
+   <summary>💡 Se hint</summary>
+
+   Bruk LINQ-uttrykk for å prosessere lista.
+   </details>
 
    For de spesielt interesserte: [artikkel om funksjonell programmering i C#](https://www.milanjovanovic.tech/blog/functional-programming-in-csharp-the-practical-parts), + [enda en artikkel](https://matrixtrak.com/an-introduction-to-functional-programming-with-c-a-dive-into-the-paradigm-shift/).
 
@@ -109,11 +123,16 @@ Utfør følgende oppgaver:
 
 Du har kanskje sett at Experience inneholder en User-ID som kan benyttes til å koble opp en gitt bruker med et sett av erfaringer. Denne koblingen finnes ikke ennå, og det er din jobb å opprette denne. Denne oppgaven er mer åpen, og du står fritt frem til å velge tilnærming, basert på tidligere oppgaver. Det står derfor ingen TODO-s i koden som ber deg gjøre noe. Dette er en fin oppgave som kan egne seg til å prøve TDD.
 
-_HINT_: Her er et forslag til fremgangsmåte:
+<details>
+<summary>💡 Se hint</summary>
+
+Her er et forslag til fremgangsmåte:
 
 1. Utvid UserEndpoints med et nytt GET-endepunkt på pathen "/users/{id}/experiences"
 2. Utvid CV-service med en metode som enten henter riktig bruker og alle erfaringer, og mapper disse riktig mellom seg. Her er du nok nødt til å utvide UserDto-en samt oppdatere UserMapperen for å sørge for at erfaringene blir med.
 3. Test i Scalar eller ved å utføre TDD.
+
+</details>
 
 ## Mer bonus: Oppgave 6
 
