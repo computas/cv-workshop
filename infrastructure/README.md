@@ -130,7 +130,9 @@ Nå som image bygger, vil vi endre Terraform til å bruke dette imaget.
 
 Endre `FRONTEND_IMAGE` og `BACKEND_IMAGE` i `main.tf` til å referere til ditt eget image på GitHub Container Registry.
 
-💡 _TIPS:_ Du kan se images publisert i ditt repo under https://github.com/<ditt-brukernavn-her>?tab=packages&repo_name=cv-workshop
+Kjør så en ny `terraform apply` for å oppdatere serveren din med dee nye imagene.
+
+💡 _TIPS:_ Du kan se images publisert i ditt repo under "Packages".
 
 <details>
   <summary>✨ Se fasit</summary>
@@ -146,4 +148,42 @@ Endre `FRONTEND_IMAGE` og `BACKEND_IMAGE` i `main.tf` til å referere til ditt e
 
 </details>
 
+## 🔨 Oppgave 2.3
+
+Nå kan du prøve å gå inn på nettsiden din!
+Den er eksponert via port 80 på `server_hostame` (output fra Terraform).
+
+```bash
+curl -v https://<server_hostname>
+```
+
 # Videre
+
+Vi har nå satt opp en Linux-server på UpCloud, og deployet en full-stack applikasjon med Docker Compose, alt via deklarativ konfigurasjon i Terraform.
+
+## Endre Docker-tjenester i `compose.yaml`
+
+Tjenestene vi deployer med Docker er definert i `compose.yaml`. Her kan du gjøre endringer, for å så kjøre `terraform apply`.
+
+- `caddy`: Brukes for å generere TLS-sertifikater (for HTTPS) og som lastbalanserer for frontend og backend.
+  Denne tar i mot requests fra utsiden (port 443, HTTPS) og sender de videre til frontend (`/*`) eller backend (`/api/*`).
+
+- `frontend`: Vår egen React-frontend.
+
+- `backend`: Vårt eget .NET API.
+
+- `database`: En PostgreSQL database som backend bruker for å lagre data.
+
+## SSH inn på server
+
+Når vi lager UpCloud-serveren vår, genererer vi også et SSH-nøkkelpar som vi bruker for å logge inn på serveren.
+
+Dette nøkkelparet kan du også bruke lokalt for å logge inn på serveren via SSH.
+
+F.eks.:
+
+```bash
+terraform output -raw ssh_key > ~/.ssh/ssh_key.pem
+chmod 600 ~/.ssh/ssh_key.pem
+ssh -i ~/.ssh/ssh_key.pem <ditt servernavn>@<din server-IP>
+```
