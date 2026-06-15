@@ -46,9 +46,15 @@ Utfør følgende oppgaver:
 
    _HINT_ 💡: Sjekk [dokumentasjonen](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-10.0#routing) til Minimal API.
 
-Du vil etter hvert se behovet for å utvide CVService, du kan dermed gå til oppgave 2 før du fullfører 1 senere. 2. Utvid CVService med en ny metode _GetUserByIdAsync_. Husk å oppdatere interfacet også.
+   > Du vil etter hvert se behovet for å utvide CVService. Du kan derfor hoppe videre til steg 2 og komme tilbake til steg 1 etterpå.
 
-_HINT_ 💡: metoden FindAsync() kan ta inn en id og finne et 4. Dersom ingen bruker finnes med gitt id, returner en 404 Not Found med en beskrivende feilmelding. 5. Test endepunktet i Scalar og sjekk at du får forventet respons - både med en eksisterende id og en ikke-eksisterende.
+2. Utvid CVService med en ny metode _GetUserByIdAsync_. Husk å oppdatere interfacet også.
+
+   _HINT_ 💡: metoden `FindAsync()` kan ta inn en id og finne riktig bruker.
+
+3. Dersom ingen bruker finnes med gitt id, returner en 404 Not Found med en beskrivende feilmelding.
+
+4. Test endepunktet i Scalar og sjekk at du får forventet respons - både med en eksisterende id og en ikke-eksisterende.
 
 ## Oppgave 2
 
