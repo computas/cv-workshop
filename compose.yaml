@@ -1,0 +1,50 @@
+services:
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '443:443'
+    environment:
+      CADDY_HOST: ${CADDY_HOST:-:80}
+    command: >
+      sh -c 'echo "$${CADDY_HOST} {
+        reverse_proxy /api/* backend:8080
+        reverse_proxy * frontend:3000
+      }" | caddy run --config /dev/stdin --adapter caddyfile'
+
+  frontend:
+    image: ${FRONTEND_IMAGE:-ghcr.io/computas/cv-workshop/frontend:latest}
+    build: frontend
+    restart: unless-stopped
+    environment:
+      - API_URL=https://${BACKEND_URL:-backend}/api
+
+  backend:
+    image: ${BACKEND_IMAGE:-ghcr.io/computas/cv-workshop/backend:latest}
+    build: backend
+    restart: unless-stopped
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=database;Database=postgres;Username=postgres;Password=${DB_PASSWORD:-postgres}
+    depends_on:
+      database:
+        condition: service_healthy
+
+  database:
+    image: postgres:18-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_DB: postgres
+    volumes:
+      - pg_data:/var/lib/postgresql/18/docker
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 5s
+      retries: 5
+
+volumes:
+  pg_data:
+  caddy_data:
+  caddy_config:

@@ -18,8 +18,8 @@ builder.Services.AddScoped<ICvService, CvService>();
 // Konfigurer CORS
 builder.Services.AddCorsServices(builder.Configuration);
 
-// Konfigurer Swagger/OpenAPI
-builder.Services.AddSwaggerServices();
+// Konfigurer OpenAPI (Scalar)
+builder.Services.AddOpenApiServices();
 
 var app = builder.Build();
 
@@ -33,8 +33,8 @@ using (var scope = app.Services.CreateScope())
 // Global Exception handling
 app.UseMiddleware<ExceptionMiddleware>();
 
-// Aktiver Swagger UI
-app.UseSwaggerWithUi();
+// Aktiver OpenAPI + Scalar UI
+app.UseOpenApiWithScalar();
 
 // Aktiver CORS
 app.UseCorsPolicy();
