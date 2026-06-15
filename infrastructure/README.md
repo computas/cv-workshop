@@ -21,6 +21,9 @@ Eventuelt opprett en GitHub-konto hvis du ikke har en fra før.
 
 Registrer deg for en gratis UpCloud-konto [her](https://signup.upcloud.com).
 
+Gå så inn på "Account" og huk av på "Allow Basic Auth API access".
+Velg "All addresses". Dette er for å få tilgang til UpCloud API'et via Terraform.
+
 ### Autentiser deg mot UpCloud via Terraform
 
 Legg inn brukernavn/passord til UpCloud kontoen din i en fil som heter `terraform.tfvars` i `infrastructure`-mappen, med følgende innhold:
