@@ -19,7 +19,7 @@ Backenden kobler seg til den lokale Postgres-databasen som kjører via Docker Co
 2. Kopier koden og kjør `dotnet user-secrets set "AppSettings:FrontendApiKey" "<din unike kode>"`
 3. Kjør `dotnet run`
    Nå kjører backenden på port 5007.
-4. Gå til `http://localhost:5007/` i nettleseren din, og sørg for at Swagger dukker opp.
+4. Gå til `http://localhost:5007/scalar/` i nettleseren din, og sørg for at [Scalar](https://scalar.com/) dukker opp.
 5. Til senere: Når frontenden er satt opp og kjører, sørg for at AllowedCorsOrigins i appsettings.json inneholder de url-ene som skal få lov til å hente data fra backenden, samt porten der frontenden kjører lokalt (Dette skal være http://localhost:5173)
 
 Greit å vite: `dotnet user-secrets list` lister opp alle secrets (kjøres i backendmappa)
@@ -48,7 +48,7 @@ Utfør følgende oppgaver:
 
 Du vil etter hvert se behovet for å utvide CVService, du kan dermed gå til oppgave 2 før du fullfører 1 senere. 2. Utvid CVService med en ny metode _GetUserByIdAsync_. Husk å oppdatere interfacet også.
 
-_HINT_ 💡: metoden FindAsync() kan ta inn en id og finne et 4. Dersom ingen bruker finnes med gitt id, returner en 404 Not Found med en beskrivende feilmelding. 5. Test endepunktet i Swagger og sjekk at du får forventet respons - både med en eksisterende id og en ikke-eksisterende.
+_HINT_ 💡: metoden FindAsync() kan ta inn en id og finne et 4. Dersom ingen bruker finnes med gitt id, returner en 404 Not Found med en beskrivende feilmelding. 5. Test endepunktet i Scalar og sjekk at du får forventet respons - både med en eksisterende id og en ikke-eksisterende.
 
 ## Oppgave 2
 
@@ -59,7 +59,7 @@ Opprett to endepunkt i ExperienceEndpoints; et for å hente alle Experiences, sa
 1. Opprett en fil, ExperienceMapper i mappen Mappers. Denne skal bestå av en statisk klasse med en statisk metode _ToDto_ som returnerer en ExperienceDto.
 2. Fullfør metodene _GetAllExperiencesAsync_ og _GetExperienceByIdAsync_ i CVService.
 3. Fullfør de to TODO-ene i ExperienceEndpoints.
-4. Test endepunktene i Swagger og sjekk at metodene returner en ikke-tom liste med Experiences.
+4. Test endepunktene i Scalar og sjekk at metodene returner en ikke-tom liste med Experiences.
 
 ## Oppgave 3
 
@@ -107,7 +107,7 @@ _HINT_: Her er et forslag til fremgangsmåte:
 
 1. Utvid UserEndpoints med et nytt GET-endepunkt på pathen "/users/{id}/experiences"
 2. Utvid CV-service med en metode som enten henter riktig bruker og alle erfaringer, og mapper disse riktig mellom seg. Her er du nok nødt til å utvide UserDto-en samt oppdatere UserMapperen for å sørge for at erfaringene blir med.
-3. Test i Swagger eller ved å utføre TDD.
+3. Test i Scalar eller ved å utføre TDD.
 
 ## Mer bonus: Oppgave 6
 
