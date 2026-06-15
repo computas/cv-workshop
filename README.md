@@ -2,7 +2,7 @@
 
 ## Før du begyner
 
-1. Last ned .net 9.0 SDK fra [hjemmesiden](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)2
+1. Last ned .net 10.0 SDK fra [hjemmesiden](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
 2. Last ned npm fra [hjemmesiden](https://nodejs.org/en/download/)
 
 ## Oppsett av Supabase
