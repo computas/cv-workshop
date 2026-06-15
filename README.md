@@ -4,28 +4,31 @@
 
 1. Last ned .net 10.0 SDK fra [hjemmesiden](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
 2. Last ned npm fra [hjemmesiden](https://nodejs.org/en/download/)
+3. Last ned [Docker Desktop](https://www.docker.com/products/docker-desktop/) (brukes til å kjøre databasen lokalt)
 
-## Oppsett av Supabase
+## Oppsett av lokal database
 
-### 1. Registrering
+Vi kjører PostgreSQL lokalt via Docker Compose. Det er ikke noe oppsett utover å starte tjenesten.
 
-1. Gå til [supabase.com](https://supabase.com) og klikk på **Start your project**.
-2. Hvis du ikke har en bruker, klikk på **Sign up now** og registrer deg med din private e-postadresse.
-3. Opprett en ny organisasjon med følgende valg:
+Fra rotmappen i prosjektet:
 
-   - **Name:** `<ditt navn>`'s Org
-   - **Type:** Personal
-   - **Plan:** Free
+```bash
+docker compose up -d database
+```
 
-4. Opprett et prosjekt med følgende valg:
+Sjekk at den er oppe og kjører (`STATUS` skal være `healthy`):
 
-   - **Organization:** Velg organisasjonen du nettopp laget
-   - **Project name:** `MinCV`
-   - **Database Password:** Velg et sterkt passord som du husker - du trenger det snart.
-     > ⚠️ Merk: Passordet kan være synlig for de du deler koden med
-   - **Region:** North EU (Stockholm 🇸🇪)
+```bash
+docker compose ps
+```
 
-5. Klikk **Create new project**.
+Databasen kjører nå på `localhost:5432` med følgende verdier:
+
+- **User:** `postgres`
+- **Password:** `postgres`
+- **Database:** `postgres`
+
+Disse verdiene brukes videre i [backend-oppsettet](./backend/README.md).
 
 ## Backendoppgaver og oppsett
 
