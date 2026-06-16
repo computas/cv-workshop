@@ -70,7 +70,7 @@ Utfør følgende oppgaver:
 
 _Aktuelle filer: ExperienceEndpoints.cs, CVService.cs_
 
-Opprett to endepunkt i ExperienceEndpoints; et for å hente alle Experiences, samt et for å hente ut en gitt Experience basert på id. Endepunktene kommer til å ligne en del på de du har skrevet tidligere i oppbyggingen. Men, du skal nå også skrive en mapper for Experiences der du mapper databasemodellen til en DTO. Hvorfor DTO-er? Sjekk denne [artikkelen](https://konstantinmb.medium.com/dtos-101-the-what-why-and-how-of-data-transfer-objects-304a03a71a2c)
+Opprett to endepunkt i ExperienceEndpoints; ett for å hente alle Experiences, samt ett for å hente ut en gitt Experience basert på id. Endepunktene kommer til å ligne en del på de du har skrevet tidligere i oppbyggingen. Men, du skal nå også skrive en mapper for Experiences der du mapper databasemodellen til en DTO. Hvorfor DTO-er? Sjekk denne [artikkelen](https://konstantinmb.medium.com/dtos-101-the-what-why-and-how-of-data-transfer-objects-304a03a71a2c)
 
 1. Opprett en fil, ExperienceMapper i mappen Mappers. Denne skal bestå av en statisk klasse med en statisk metode _ToDto_ som returnerer en ExperienceDto.
 2. Fullfør metodene _GetAllExperiencesAsync_ og _GetExperienceByIdAsync_ i CVService.
