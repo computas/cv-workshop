@@ -68,11 +68,13 @@ resource "null_resource" "deploy" {
       "  echo \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian $(. /etc/os-release && echo $VERSION_CODENAME) stable\" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null",
       "  sudo apt-get update -qq",
       "  sudo apt-get install -y -qq docker-ce docker-ce-cli containerd.io docker-compose-plugin",
-      "  sudo systemctl enable --now docker",
-      "  sudo usermod -aG docker $USER",
+      "  sudo systemctl enable docker",
+      "  sudo systemctl start docker",
+      "  sudo usermod -aG docker ${var.name}",
       "fi",
+      "sudo systemctl is-active --wait docker",
       "sudo mkdir -p /opt/app",
-      "sudo chown $USER:$USER /opt/app",
+      "sudo chown ${var.name}:${var.name} /opt/app",
     ]
   }
 
