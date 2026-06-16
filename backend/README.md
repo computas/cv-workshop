@@ -38,7 +38,7 @@ Merk at selv om oppgavene nevner en liste med punkter så kan det være behov fo
 
 _Aktuelle filer: UserEndpoints.cs, ICVService.cs, CVService.cs_
 
-Du har fått utdelt et endepunkt som henter alle brukere i Users-tabellen i databasen vår. Skriv et nytt endepunkt som henter ut _én_ spesifikk bruker, gitt en ID. Bruk GetAllUsers som inspirasjon, i routeren, samt servicen.
+Du har fått utdelt et endepunkt som henter alle brukere i Users-tabellen i databasen vår. Skriv et nytt endepunkt som henter ut _én_ spesifikk bruker, gitt en ID. Gjerne bruk GetAllUsers som inspirasjon.
 
 Utfør følgende oppgaver:
 
