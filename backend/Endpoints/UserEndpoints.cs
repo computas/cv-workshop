@@ -1,7 +1,6 @@
 ﻿using backend.Data.Mappers;
 using backend.Data.Requests;
 using backend.Services;
-using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Endpoints;
 
