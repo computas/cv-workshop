@@ -11,7 +11,7 @@ Claude Code + skills. Designerne kjører et parallelt spor med claude.ai/design.
 ## Før workshopen (sjekkliste)
 - [ ] Studentene har sitt CV-prosjekt på ~fasit-nivå og får det til å kjøre lokalt
       (backend på 5007, frontend på 5173).
-- [ ] Claude Code installert og innlogget. Skills (superpowers + design) installert.
+- [ ] Claude Code installert og innlogget. Plugins installert: `superpowers` + `frontend-design` (se `skills-cheatsheet.md`). Del evt. design-polish-skills (`critique`/`polish` o.l.) med studentene hvis du vil bruke dem.
 - [ ] Hver student har lagt `CLAUDE.md` + `docs/workshop/` inn i sitt eget prosjekt.
 - [ ] Supabase connection string satt via `dotnet user-secrets` (backend kjører).
 - [ ] `npm install` kjørt i frontend.

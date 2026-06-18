@@ -73,13 +73,14 @@ npm run dev
 1. **`brainstorming`** før du begynner — avklar hva du faktisk skal bygge.
 2. **`writing-plans`** — lag en plan før du rører kode.
 3. **`test-driven-development`** der det gir mening (særlig backend-logikk).
-4. **`frontend-design`** + design-skills (`critique`, `colorize`, `polish`) for UI.
+4. **`frontend-design`** for UI (polish-skills som `critique`/`polish` hvis installert — se `docs/workshop/skills-cheatsheet.md`).
 5. **`systematic-debugging`** når noe ikke virker — ikke gjett.
 6. **`verification-before-completion`** før du sier deg ferdig — kjør appen, se at det funker.
 7. **`requesting-code-review`** til slutt.
 
 ## Oppgaver
 Se `docs/workshop/`:
+- `skills-cheatsheet.md` — **start her**: installer + bruk skills/plugins
 - `oppgave-om-meg.md` — **flaggskip** (alle gjør denne først)
 - `stretch-oppgaver.md` — videre når flaggskip er i mål
 - `claude-md-guide.md` — slik skriver du en god CLAUDE.md (ta med til andre prosjekter)
