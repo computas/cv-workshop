@@ -35,16 +35,17 @@ npm run dev
 ## Kommandoer
 - Frontend: `npm run dev` (kjør) · `npm run build` · `npm run lint`
 - Backend: `dotnet run` (kjør) · `dotnet build`
-- Migrering: `dotnet ef migrations add <Navn>` (kjøres automatisk ved oppstart;
-  `database update` trengs ikke lokalt).
+- Migrering: `dotnet ef migrations add <Navn>` (krever .NET 10 SDK + `dotnet-ef` 10.x;
+  migreringer kjøres automatisk ved oppstart, så `database update` trengs ikke lokalt).
 
 ## Viktige fallgruver (les før du koder)
 - **`frontend/src/api.ts` hardkoder** `http://localhost:5007` og ignorerer
   `VITE_BACKEND_API_URL` fra `.env`. Endre i `api.ts` hvis backend kjører et annet sted.
 - **API-key er skrudd av**: `ApiKeyMiddleware` er kommentert ut i `backend/Program.cs`.
   API-et er åpent lokalt. Skrur du på auth, må `api.ts` sende header `X-Frontend-Api-Key`.
-- **Stub-endepunkt returnerer `200` med tom body** (ikke feil). Sjekk responskroppen,
-  ikke bare statuskoden, når du verifiserer.
+- **Uferdig uke-arbeid?** Noen endepunkt kan fortsatt være stubs som returnerer tom `200`
+  (ikke feil) — sjekk responskroppen, ikke bare status. Hent løsningen ved behov:
+  `git checkout fasit -- backend/ frontend/`. (`GET /users` virker uansett.)
 - **Seed-data:** alle erfaringer tilhører bruker #1 (`11111111-…-111111111111`).
   Bruker #2 og #3 har null erfaringer — det er ikke en bug.
 - **EF-snapshot** står på 9.0.5 mens pakkene er 10.x. Første nye migrering gir en
@@ -73,7 +74,7 @@ npm run dev
 1. **`brainstorming`** før du begynner — avklar hva du faktisk skal bygge.
 2. **`writing-plans`** — lag en plan før du rører kode.
 3. **`test-driven-development`** der det gir mening (særlig backend-logikk).
-4. **`frontend-design`** for UI (polish-skills som `critique`/`polish` hvis installert — se `docs/workshop/skills-cheatsheet.md`).
+4. **`frontend-design`** for UI.
 5. **`systematic-debugging`** når noe ikke virker — ikke gjett.
 6. **`verification-before-completion`** før du sier deg ferdig — kjør appen, se at det funker.
 7. **`requesting-code-review`** til slutt.

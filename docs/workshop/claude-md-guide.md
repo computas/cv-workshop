@@ -7,7 +7,8 @@ høy signal**. Alt som ikke betaler for seg, koster bare tokens og fortynner res
 > Se `CLAUDE.md` i rota av dette prosjektet som et konkret eksempel på alt under.
 
 ## Hvor filene ligger
-Claude Code laster minne fra flere steder (mer spesifikt overstyrer mer generelt):
+Claude Code laster minne fra flere steder og **legger alt sammen** i konteksten (mer
+spesifikke filer leses sist — de overstyrer ikke, de supplerer):
 - **`./CLAUDE.md`** i prosjektrota — delt med teamet (commit den). Den viktigste.
 - **Foreldremapper** — Claude går oppover i treet og tar med det den finner.
 - **Undermapper** (`frontend/CLAUDE.md`) — lastes når Claude jobber med filer der.

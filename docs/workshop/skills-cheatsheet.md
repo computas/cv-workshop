@@ -5,12 +5,13 @@
 `superpowers` er en slik plugin.
 
 ## Installer (én gang)
-Den offisielle markedsplassen `claude-plugins-official` er allerede registrert, så
-du installerer rett fra den:
+Den offisielle markedsplassen `claude-plugins-official` er som regel allerede registrert.
+Installer pluginene:
 ```
 /plugin install superpowers@claude-plugins-official
 /plugin install frontend-design@claude-plugins-official
 ```
+Mangler markedsplassen (sjelden)? Åpne `/plugin` → Marketplaces og legg til den offisielle.
 Nyttig ellers: `/plugin` (interaktiv meny), `/plugin list`, `/reload-plugins`.
 
 ## Slik trigger du en skill
@@ -27,12 +28,6 @@ Nyttig ellers: `/plugin` (interaktiv meny), `/plugin list`, `/reload-plugins`.
 | Bygg/poler UI | `/frontend-design:frontend-design` |
 | Før du sier deg ferdig | `/superpowers:verification-before-completion` |
 | Be om kodegjennomgang | `/superpowers:requesting-code-review` |
-
-## Design-skills (kun hvis installert)
-Skills som `critique`, `colorize`, `polish`, `audit` gir UI-tilbakemelding og
-forbedring. De er **ikke** del av de to pluginene over — de kan være forhåndsinstallert
-i workshop-oppsettet. Finner du ikke `/critique`, spør fasilitator (eller hopp over dem
-og bruk `frontend-design`).
 
 ## Hvor skills bor
 - **Personlig:** `~/.claude/skills/` — følger deg på tvers av alle prosjekter.
