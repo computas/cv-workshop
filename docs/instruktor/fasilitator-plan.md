@@ -11,7 +11,7 @@ Claude Code + skills. Designerne kjører et parallelt spor med claude.ai/design.
 ## Før workshopen (sjekkliste)
 - [ ] Studentene har sitt CV-prosjekt på ~fasit-nivå og får det til å kjøre lokalt
       (backend på 5007, frontend på 5173).
-- [ ] Claude Code installert og innlogget. Plugins installert: `superpowers` + `frontend-design` (se `skills-cheatsheet.md`). Del evt. design-polish-skills (`critique`/`polish` o.l.) med studentene hvis du vil bruke dem.
+- [ ] Claude Code installert og innlogget. Plugins installert: `superpowers` + `frontend-design` (se `../workshop/skills-cheatsheet.md`). Del evt. design-polish-skills (`critique`/`polish` o.l.) med studentene hvis du vil bruke dem.
 - [ ] Hver student har lagt `CLAUDE.md` + `docs/workshop/` inn i sitt eget prosjekt.
 - [ ] Supabase connection string satt via `dotnet user-secrets` (backend kjører).
 - [ ] `npm install` kjørt i frontend.
@@ -22,8 +22,8 @@ Claude Code + skills. Designerne kjører et parallelt spor med claude.ai/design.
 |-----|------|---------|
 | 0–10 | Intro | Hva er skills, hvordan invoke. Vis ett kjapt eksempel live (f.eks. `brainstorming`). |
 | 10–15 | Oppsett | Sjekk at alle kjører appen + har lagt inn `CLAUDE.md`/briefer. |
-| 15–60 | **Flaggskip** | Alle bygger "Om meg"-siden (`oppgave-om-meg.md`). Du sirkulerer. |
-| 60–80 | **Stretch** | De raske velger fra `stretch-oppgaver.md`. |
+| 15–60 | **Flaggskip** | Alle bygger "Om meg"-siden (`../workshop/oppgave-om-meg.md`). Du sirkulerer. |
+| 60–80 | **Stretch** | De raske velger fra `../workshop/stretch-oppgaver.md`. |
 | 80–90 | Show & tell | 2–3 utviklere + designerne viser hva de fikk til. |
 
 Juster fritt — kjernen er flaggskip + show & tell.
@@ -47,12 +47,12 @@ Juster fritt — kjernen er flaggskip + show & tell.
 | Backend starter ikke | Mangler connection string | `dotnet user-secrets set "ConnectionStrings:DefaultConnection" "…"`. |
 
 ## Designer-sporet (parallelt)
-Se `designer-brief.md`. La dem jobbe selvstendig i claude.ai/design og presentere
+Se `../workshop/designer-brief.md`. La dem jobbe selvstendig i claude.ai/design og presentere
 i show & tell. Hvis tid: koble fargesystemet deres til en utvikler som tar
 "Dark mode + fargesystem"-stretchen.
 
 ## Ta med videre
-Tips studentene om `docs/workshop/claude-md-guide.md` — en kort, overførbar guide til
+Tips studentene om `../workshop/claude-md-guide.md` — en kort, overførbar guide til
 å skrive god `CLAUDE.md` på egne prosjekter senere. Fin å nevne i intro eller avslutning.
 
 ## Merk
