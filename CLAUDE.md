@@ -32,6 +32,12 @@ npm install
 npm run dev
 ```
 
+## Kommandoer
+- Frontend: `npm run dev` (kjør) · `npm run build` · `npm run lint`
+- Backend: `dotnet run` (kjør) · `dotnet build`
+- Migrering: `dotnet ef migrations add <Navn>` (kjøres automatisk ved oppstart;
+  `database update` trengs ikke lokalt).
+
 ## Viktige fallgruver (les før du koder)
 - **`frontend/src/api.ts` hardkoder** `http://localhost:5007` og ignorerer
   `VITE_BACKEND_API_URL` fra `.env`. Endre i `api.ts` hvis backend kjører et annet sted.
@@ -57,6 +63,12 @@ npm run dev
   Bruk records + primary constructors som resten av koden.
 - Hold endringer små. Les eksisterende mønster i nabo-filer før du skriver.
 
+## Ikke gjør
+- Aldri commit hemmeligheter — connection string ligger i `dotnet user-secrets`, ikke i `appsettings.json`.
+- Ikke rediger eksisterende migreringer for hånd — lag en ny.
+- Ikke returner EF-entiteter direkte fra endepunkt — bruk DTO.
+- Ikke hardkod farger/px når designsystem-tokens finnes.
+
 ## Arbeidsflyt med Claude Code (bruk skills!)
 1. **`brainstorming`** før du begynner — avklar hva du faktisk skal bygge.
 2. **`writing-plans`** — lag en plan før du rører kode.
@@ -70,3 +82,4 @@ npm run dev
 Se `docs/workshop/`:
 - `oppgave-om-meg.md` — **flaggskip** (alle gjør denne først)
 - `stretch-oppgaver.md` — videre når flaggskip er i mål
+- `claude-md-guide.md` — slik skriver du en god CLAUDE.md (ta med til andre prosjekter)

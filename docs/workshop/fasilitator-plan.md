@@ -51,6 +51,10 @@ Se `designer-brief.md`. La dem jobbe selvstendig i claude.ai/design og presenter
 i show & tell. Hvis tid: koble fargesystemet deres til en utvikler som tar
 "Dark mode + fargesystem"-stretchen.
 
+## Ta med videre
+Tips studentene om `docs/workshop/claude-md-guide.md` — en kort, overførbar guide til
+å skrive god `CLAUDE.md` på egne prosjekter senere. Fin å nevne i intro eller avslutning.
+
 ## Merk
 - `feat/deploy`-branchen har **bevisst seedede bugs** i Terraform — ikke bruk som referanse.
 - `fasit` og `fasitV2` er løsnings-brancher; de er funksjonelt like (forskjell:
